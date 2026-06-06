@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join Family – Nimons360</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F3F4F6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 24px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .icon {
+            width: 64px;
+            height: 64px;
+            background: #2563EB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+        h1 {
+            font-size: 20px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 24px;
+        }
+        .family-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1D4ED8;
+            margin-bottom: 4px;
+        }
+        .code-label {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .code {
+            font-size: 20px;
+            font-weight: 700;
+            color: #374151;
+            letter-spacing: 0.1em;
+            margin-bottom: 28px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #2563EB;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+        .btn:active { background: #1D4ED8; }
+        .note {
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">👨‍👩‍👧‍👦</div>
+        <h1>You're invited!</h1>
+        <p class="subtitle">Join a family on Nimons360</p>
+        <div class="family-name" id="familyName">—</div>
+        <div class="code-label">Family Code</div>
+        <div class="code" id="familyCode">—</div>
+        <a class="btn" id="openBtn" href="#">Open in Nimons360</a>
+        <p class="note">Nimons360 must be installed on your device</p>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id   = params.get('id')   || '';
+        const code = params.get('code') || '';
+        const name = params.get('name') || 'Family';
+
+        document.getElementById('familyName').textContent = name;
+        document.getElementById('familyCode').textContent = code;
+
+        const deepLink = 'nimons360://family/' + id + '?code=' + code;
+        document.getElementById('openBtn').href = deepLink;
+
+        setTimeout(function () {
+            window.location.href = deepLink;
+        }, 800);
+    </script>
+</body>
+</html>
